@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zest All-In-One Downloader | Official</title>
+    <style>
+        :root { --yt: #ff0000; --fb: #1877f2; --dark: #0b0f19; --card: #161b2c; --accent: #00ff88; }
+        body { background: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 15px; text-align: center; }
+        
+        header { padding: 35px 10px; }
+        .logo { font-size: 28px; font-weight: 800; color: var(--accent); letter-spacing: -1px; }
+        .tagline { color: #888; font-size: 13px; margin-top: 5px; }
+        
+        .main-card { background: var(--card); padding: 30px 20px; border-radius: 25px; border: 1px solid #333; max-width: 480px; margin: 0 auto; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+        
+        /* Premium Tab System */
+        .tab-box { display: flex; background: #000; padding: 6px; border-radius: 16px; margin-bottom: 25px; border: 1px solid #222; }
+        .tab { flex: 1; padding: 14px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; color: #666; transition: 0.4s; background: transparent; }
+        .tab.active-yt { background: var(--yt); color: white; }
+        .tab.active-fb { background: var(--fb); color: white; }
+
+        .input-group { position: relative; margin-bottom: 20px; }
+        input { width: 90%; padding: 18px; border-radius: 12px; border: 1px solid #444; background: #000; color: white; font-size: 16px; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(0,255,136,0.2); }
+
+        .dl-button { width: 95%; padding: 20px; border-radius: 12px; border: none; font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.3s; letter-spacing: 0.5px; }
+        .yt-btn { background: var(--yt); color: white; }
+        .fb-btn { background: var(--fb); color: white; }
+        .dl-button:active { transform: scale(0.96); }
+
+        /* Monetization / Store Link */
+        .promo-box { margin-top: 30px; padding: 20px; background: rgba(0,255,136,0.05); border: 1px dashed var(--accent); border-radius: 15px; }
+        .promo-box a { color: var(--accent); text-decoration: none; font-weight: bold; font-size: 14px; }
+
+        footer { margin-top: 60px; padding-bottom: 40px; }
+        .counter-wrap { opacity: 0.15; filter: grayscale(1); margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ZEST ALL-IN-ONE</div>
+        <div class="tagline">Premium Video Downloader Engine</div>
+    </header>
+
+    <div class="main-card">
+        <div class="tab-box">
+            <button id="ytTab" class="tab active-yt" onclick="setMode('yt')">YouTube</button>
+            <button id="fbTab" class="tab" onclick="setMode('fb')">Facebook</button>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="Paste YouTube link here...">
+        </div>
+        
+        <button id="dlBtn" class="dl-button yt-btn" onclick="processDownload()">
+            DOWNLOAD VIDEO (MP4)
+        </button>
+
+        <p style="font-size: 11px; color: #444; margin-top: 20px;">
+            Supported: Shorts, Reels, HD Videos, and MP4.
+        </p>
+    </div>
+
+    <div class="promo-box">
+        <a href="index.html">🛒 SHOP ZEST STORE: Bags & Tech (20% OFF) →</a>
+    </div>
+
+    <footer>
+        <div style="font-size: 11px; color: #555;">
+            © 2025 ZEST TECH GLOBAL • +2347032511658
+        </div>
+        
+        <div class="counter-wrap">
+            <img src="https://hitwebcounter.com/counter/counter.php?page=ZEST_ALL_IN_ONE_DL&style=0005&nbdigits=5&type=page&initCount=0" border="0" />
+            <br><span style="font-size: 8px;">ZEST-DL-V1</span>
+        </div>
+    </footer>
+
+    <script>
+        let mode = 'yt';
+
+        function setMode(m) {
+            mode = m;
+            const btn = document.getElementById('dlBtn');
+            const ytT = document.getElementById('ytTab');
+            const fbT = document.getElementById('fbTab');
+            const inp = document.getElementById('urlInput');
+
+            if(mode === 'yt') {
+                ytT.className = "tab active-yt";
+                fbT.className = "tab";
+                btn.className = "dl-button yt-btn";
+                inp.placeholder = "Paste YouTube link here...";
+            } else {
+                fbT.className = "tab active-fb";
+                ytT.className = "tab";
+                btn.className = "dl-button fb-btn";
+                inp.placeholder = "Paste Facebook link here...";
+            }
+        }
+
+        function processDownload() {
+            const url = document.getElementById('urlInput').value;
+            if(!url) { alert("Chale, please paste a link first!"); return; }
+
+            const btn = document.getElementById('dlBtn');
+            btn.innerText = "⚡ PREPARING FILE...";
+
+            setTimeout(() => {
+                if(mode === 'yt') {
+                    // YouTube Engine Swap Logic
+                    let target = url.replace("youtube.com", "ssyoutube.com").replace("youtu.be/", "ssyoutube.com/watch?v=");
+                    window.location.href = target;
+                } else {
+                    // Facebook Engine Swap Logic
+                    window.location.href = "https://fdown.net/download.php?url=" + encodeURIComponent(url);
+                }
+                btn.innerText = "DOWNLOAD VIDEO (MP4)";
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
