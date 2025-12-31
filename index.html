@@ -3,81 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zest All-In-One Downloader | 2025</title>
+    <title>Zest Multi-Downloader | 2025 Pro</title>
     
     <meta name="monetag" content="d5e22ecefd262f456129eb770f98c3d8">
 
     <script src="https://pl28368305.effectivegatecpm.com/9e/81/39/9e8139365ea358b64f4023c6b4d1074a.js"></script>
 
     <style>
-        :root { --accent: #00ff88; --bg: #0a0a0a; }
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; margin: 0; }
-        .container { max-width: 500px; margin: 40px auto; background: #1a1a1a; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        input { width: 90%; padding: 12px; border-radius: 8px; border: 1px solid var(--accent); background: #000; color: white; margin-bottom: 15px; outline: none; }
-        button { width: 100%; padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; margin: 5px 0; }
-        .btn-main { background: var(--accent); color: black; font-size: 16px; }
-        .btn-main:hover { background: #00cc6e; }
-        .btn-premium { background: #ffcc00; color: black; font-size: 13px; }
-        .status { font-size: 12px; color: #888; margin-top: 10px; }
-        #timestamp { color: var(--accent); font-weight: bold; }
-        .tracker-box { margin-top: 20px; font-size: 10px; color: #444; }
+        :root { --yt-red: #ff0000; --fb-blue: #1877f2; --bg: #0a0a0a; --accent: #00ff88; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
+        
+        .main-box { max-width: 500px; margin: 40px auto; background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
+        
+        .tab-container { display: flex; cursor: pointer; }
+        .tab { flex: 1; padding: 18px; font-weight: bold; background: #222; color: #888; transition: 0.3s; letter-spacing: 1px; }
+        .tab.active-yt { background: var(--yt-red); color: white; }
+        .tab.active-fb { background: var(--fb-blue); color: white; }
+
+        .content { padding: 30px; }
+        input { width: 90%; padding: 14px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; margin-bottom: 20px; outline: none; }
+        
+        .dl-btn { width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .yt-btn { background: var(--yt-red); color: white; }
+        .fb-btn { background: var(--fb-blue); color: white; }
+        
+        .progress-container { width: 100%; background: #333; height: 12px; border-radius: 6px; margin: 20px 0; display: none; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: var(--accent); transition: width 0.2s; }
+
+        .smart-link-btn { margin-top: 20px; display: block; background: linear-gradient(90deg, #ffcc00, #ff9900); color: black; padding: 14px; text-decoration: none; border-radius: 10px; font-weight: 800; font-size: 14px; }
+        .status { font-size: 11px; color: var(--accent); margin-bottom: 10px; opacity: 0.8; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2 style="color: var(--accent); letter-spacing: 2px;">ZEST DOWNLOADER</h2>
-        <p class="status">Live System Time: <span id="timestamp"></span></p>
-        
-        <input type="text" id="videoUrl" placeholder="Paste Video Link Here..." />
-        
-        <button class="btn-main" onclick="startDownload()">START DOWNLOAD</button>
-
-        <a href="YOUR_MONETAG_DIRECT_LINK_HERE" target="_blank" style="text-decoration: none;">
-            <button class="btn-premium">🚀 SERVER 2 (HIGH SPEED AD-FREE)</button>
-        </a>
-
-        <div id="loader" style="display:none; margin: 20px 0; color: var(--accent);">
-            Connecting to API... ⏳
+    <div class="main-box">
+        <div class="tab-container">
+            <div id="ytTab" class="tab active-yt" onclick="switchTab('youtube')">YOUTUBE</div>
+            <div id="fbTab" class="tab" onclick="switchTab('facebook')">FACEBOOK</div>
         </div>
 
-        <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 15px;">
-            <p style="font-size: 11px; color: #666; text-align: left; margin-bottom: 10px;">PROMOTED CONTENT:</p>
-            <script async="async" data-cfasync="false" src="https://pl28368322.effectivegatecpm.com/973cbd4eaa7db0ffbdbbe041d0f4c2ff/invoke.js"></script>
-            <div id="container-973cbd4eaa7db0ffbdbbe041d0f4c2ff"></div>
+        <div class="content">
+            <p class="status">● SYSTEM SECURE & ACTIVE [2025]</p>
+            <h3 id="modeTitle">YouTube Downloader</h3>
+            
+            <input type="text" id="videoUrl" placeholder="Paste video link here..." />
+            
+            <button id="mainBtn" class="dl-btn yt-btn" onclick="handleDownload()">FETCH DOWNLOAD LINK</button>
+
+            <div id="pContainer" class="progress-container">
+                <div id="pFill" class="progress-fill"></div>
+            </div>
+
+            <a href="https://www.effectivegatecpm.com/dj15ch3x?key=abfaef6f0edd1051637b4695452e9d92" class="smart-link-btn" target="_blank">
+                🚀 SERVER 2: PREMIUM HIGH-SPEED (4K)
+            </a>
+
+            <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+                <script async="async" data-cfasync="false" src="https://pl28368322.effectivegatecpm.com/973cbd4eaa7db0ffbdbbe041d0f4c2ff/invoke.js"></script>
+                <div id="container-973cbd4eaa7db0ffbdbbe041d0f4c2ff"></div>
+            </div>
         </div>
     </div>
 
     <script src="https://pl28368329.effectivegatecpm.com/99/d5/ec/99d5ecd7887ca3f11a0d782584530e10.js"></script>
 
-    <div class="tracker-box">
-        <p>Traffic Analytics Active</p>
-        <script type="text/javascript">
-        var sc_project=12900000; // This is a placeholder ID
-        var sc_invisible=0; 
-        var sc_security="zest88"; 
-        </script>
-        <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
-        </div>
-
     <script>
-        // Real-time Clock for 2025
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('timestamp').innerText = now.toLocaleString();
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+        let currentMode = 'youtube';
+        const ADSTERRA_SMART_LINK = "https://www.effectivegatecpm.com/dj15ch3x?key=abfaef6f0edd1051637b4695452e9d92";
 
-        function startDownload() {
+        function switchTab(mode) {
+            currentMode = mode;
+            document.getElementById('ytTab').className = mode === 'youtube' ? 'tab active-yt' : 'tab';
+            document.getElementById('fbTab').className = mode === 'facebook' ? 'tab active-fb' : 'tab';
+            document.getElementById('mainBtn').className = mode === 'youtube' ? 'dl-btn yt-btn' : 'dl-btn fb-btn';
+            document.getElementById('modeTitle').innerText = mode === 'youtube' ? 'YouTube Downloader' : 'Facebook Downloader';
+        }
+
+        function handleDownload() {
             const url = document.getElementById('videoUrl').value;
             if(!url) { alert("Please paste a link first!"); return; }
-            document.getElementById('loader').style.display = 'block';
-            setTimeout(() => {
-                alert("Processing... Your download will start shortly.");
-                document.getElementById('loader').style.display = 'none';
-            }, 3000);
+
+            const pContainer = document.getElementById('pContainer');
+            const pFill = document.getElementById('pFill');
+            pContainer.style.display = 'block';
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                if (progress >= 100) {
+                    pFill.style.width = '100%';
+                    clearInterval(interval);
+                    
+                    // 1. TRY THE API FIRST (Opens options in a new tab)
+                    const apiURL = `https://api.vevioz.com/api/button/videos/${url}`;
+                    window.open(apiURL, '_blank');
+
+                    // 2. THE FAIL-SAFE REDIRECT (Wait 3 seconds then send to Smart Link)
+                    // This ensures the user is NEVER stuck on a blank screen.
+                    setTimeout(() => {
+                        window.location.href = ADSTERRA_SMART_LINK;
+                    }, 3000);
+
+                    pContainer.style.display = 'none';
+                    pFill.style.width = '0%';
+                } else {
+                    pFill.style.width = progress + '%';
+                }
+            }, 150);
         }
     </script>
+
+    <div style="margin-top: 30px; font-size: 10px; color: #111;">
+        <script type="text/javascript">
+            var sc_project=12900000; var sc_invisible=1; var sc_security="zest88";
+        </script>
+        <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+    </div>
 </body>
 </html>
