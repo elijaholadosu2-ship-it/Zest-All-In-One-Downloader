@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zest Multi-Downloader | 2025 Pro</title>
+    <title>Zest Multi-Downloader | Pro 2025</title>
     
     <meta name="monetag" content="d5e22ecefd262f456129eb770f98c3d8">
 
@@ -12,26 +12,21 @@
     <style>
         :root { --yt-red: #ff0000; --fb-blue: #1877f2; --bg: #0a0a0a; --accent: #00ff88; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
-        
-        .main-box { max-width: 500px; margin: 40px auto; background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
-        
+        .main-box { max-width: 500px; margin: 40px auto; background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
         .tab-container { display: flex; cursor: pointer; }
-        .tab { flex: 1; padding: 18px; font-weight: bold; background: #222; color: #888; transition: 0.3s; letter-spacing: 1px; }
+        .tab { flex: 1; padding: 18px; font-weight: bold; background: #222; color: #888; }
         .tab.active-yt { background: var(--yt-red); color: white; }
         .tab.active-fb { background: var(--fb-blue); color: white; }
-
         .content { padding: 30px; }
-        input { width: 90%; padding: 14px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; margin-bottom: 20px; outline: none; }
-        
-        .dl-btn { width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        input { width: 90%; padding: 14px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; margin-bottom: 20px; }
+        .dl-btn { width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
         .yt-btn { background: var(--yt-red); color: white; }
         .fb-btn { background: var(--fb-blue); color: white; }
         
-        .progress-container { width: 100%; background: #333; height: 12px; border-radius: 6px; margin: 20px 0; display: none; overflow: hidden; }
-        .progress-fill { width: 0%; height: 100%; background: var(--accent); transition: width 0.2s; }
-
-        .smart-link-btn { margin-top: 20px; display: block; background: linear-gradient(90deg, #ffcc00, #ff9900); color: black; padding: 14px; text-decoration: none; border-radius: 10px; font-weight: 800; font-size: 14px; }
-        .status { font-size: 11px; color: var(--accent); margin-bottom: 10px; opacity: 0.8; }
+        /* THE BAR */
+        .progress-container { width: 100%; background: #333; height: 25px; border-radius: 6px; margin: 20px 0; display: none; position: relative; }
+        .progress-fill { width: 0%; height: 100%; background: var(--accent); transition: width 0.2s; border-radius: 6px; }
+        .progress-text { position: absolute; width: 100%; top: 0; left: 0; font-size: 12px; line-height: 25px; color: black; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -43,22 +38,19 @@
         </div>
 
         <div class="content">
-            <p class="status">● SYSTEM SECURE & ACTIVE [2025]</p>
             <h3 id="modeTitle">YouTube Downloader</h3>
+            <input type="text" id="videoUrl" placeholder="Paste Video Link Here..." />
             
-            <input type="text" id="videoUrl" placeholder="Paste video link here..." />
-            
-            <button id="mainBtn" class="dl-btn yt-btn" onclick="handleDownload()">FETCH DOWNLOAD LINK</button>
+            <button id="mainBtn" class="dl-btn yt-btn" onclick="handleDownload()">GENERATE DOWNLOAD</button>
 
             <div id="pContainer" class="progress-container">
                 <div id="pFill" class="progress-fill"></div>
+                <div id="pText" class="progress-text">Fetching Video...</div>
             </div>
 
-            <a href="https://www.effectivegatecpm.com/dj15ch3x?key=abfaef6f0edd1051637b4695452e9d92" class="smart-link-btn" target="_blank">
-                🚀 SERVER 2: PREMIUM HIGH-SPEED (4K)
-            </a>
+            <p style="font-size: 11px; color: #666; margin-top: 15px;">If download doesn't start, Server 2 will trigger automatically.</p>
 
-            <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+            <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px;">
                 <script async="async" data-cfasync="false" src="https://pl28368322.effectivegatecpm.com/973cbd4eaa7db0ffbdbbe041d0f4c2ff/invoke.js"></script>
                 <div id="container-973cbd4eaa7db0ffbdbbe041d0f4c2ff"></div>
             </div>
@@ -69,7 +61,8 @@
 
     <script>
         let currentMode = 'youtube';
-        const ADSTERRA_SMART_LINK = "https://www.effectivegatecpm.com/dj15ch3x?key=abfaef6f0edd1051637b4695452e9d92";
+        const SMART_LINK = "https://www.effectivegatecpm.com/dj15ch3x?key=abfaef6f0edd1051637b4695452e9d92";
+        const REAL_DOWNLOAD_SITE = "https://en.savefrom.net/";
 
         function switchTab(mode) {
             currentMode = mode;
@@ -81,43 +74,47 @@
 
         function handleDownload() {
             const url = document.getElementById('videoUrl').value;
-            if(!url) { alert("Please paste a link first!"); return; }
+            if(!url) { alert("Paste a link first!"); return; }
 
             const pContainer = document.getElementById('pContainer');
             const pFill = document.getElementById('pFill');
+            const pText = document.getElementById('pText');
+
             pContainer.style.display = 'block';
+            pText.innerText = "Connecting to Server 1...";
             
-            let progress = 0;
+            let width = 0;
             const interval = setInterval(() => {
-                progress += 10;
-                if (progress >= 100) {
-                    pFill.style.width = '100%';
+                width += 5;
+                pFill.style.width = width + '%';
+
+                if (width === 50) pText.innerText = "Bypassing Limits...";
+                
+                if (width >= 100) {
                     clearInterval(interval);
+                    pText.innerText = "Redirecting to Download Page...";
                     
-                    // 1. TRY THE API FIRST (Opens options in a new tab)
-                    const apiURL = `https://api.vevioz.com/api/button/videos/${url}`;
-                    window.open(apiURL, '_blank');
+                    // 1. Open the API first in a new tab
+                    window.open(`https://api.vevioz.com/api/button/videos/${url}`, '_blank');
 
-                    // 2. THE FAIL-SAFE REDIRECT (Wait 3 seconds then send to Smart Link)
-                    // This ensures the user is NEVER stuck on a blank screen.
+                    // 2. AUTOMATIC REDIRECT FLOW
                     setTimeout(() => {
-                        window.location.href = ADSTERRA_SMART_LINK;
-                    }, 3000);
-
-                    pContainer.style.display = 'none';
-                    pFill.style.width = '0%';
-                } else {
-                    pFill.style.width = progress + '%';
+                        // First, send them to the Smart Link (Your Money)
+                        window.open(SMART_LINK, '_blank');
+                        // Then, change the current page to a working downloader (Their Video)
+                        window.location.href = REAL_DOWNLOAD_SITE;
+                    }, 2000);
                 }
-            }, 150);
+            }, 100);
         }
     </script>
 
-    <div style="margin-top: 30px; font-size: 10px; color: #111;">
+    <div style="margin-top: 30px;">
         <script type="text/javascript">
-            var sc_project=12900000; var sc_invisible=1; var sc_security="zest88";
+            var sc_project=12900000; var sc_invisible=0; var sc_security="zest88";
         </script>
         <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
     </div>
+
 </body>
 </html>
