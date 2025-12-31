@@ -3,113 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zest Multi-Downloader | Pro 2025</title>
+    <title>Video Downloader Pro | Fast & Secure</title>
     
     <meta name="monetag" content="d5e22ecefd262f456129eb770f98c3d8">
 
     <script src="https://pl28368305.effectivegatecpm.com/9e/81/39/9e8139365ea358b64f4023c6b4d1074a.js"></script>
 
     <style>
-        :root { --yt-red: #ff0000; --fb-blue: #1877f2; --bg: #0a0a0a; --accent: #00ff88; }
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
-        .main-box { max-width: 500px; margin: 40px auto; background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
-        .tab-container { display: flex; cursor: pointer; }
-        .tab { flex: 1; padding: 18px; font-weight: bold; background: #222; color: #888; }
-        .tab.active-yt { background: var(--yt-red); color: white; }
-        .tab.active-fb { background: var(--fb-blue); color: white; }
-        .content { padding: 30px; }
-        input { width: 90%; padding: 14px; border-radius: 8px; border: 1px solid #444; background: #000; color: white; margin-bottom: 20px; }
-        .dl-btn { width: 100%; padding: 16px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
-        .yt-btn { background: var(--yt-red); color: white; }
-        .fb-btn { background: var(--fb-blue); color: white; }
+        :root { --sf-green: #80c23d; --sf-hover: #68a52e; --bg: #f9f9f9; }
+        body { background: var(--bg); color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; text-align: center; }
+        .navbar { background: white; padding: 15px; border-bottom: 1px solid #ddd; font-weight: bold; font-size: 22px; color: var(--sf-green); }
+        .navbar span { color: #333; }
         
-        /* THE BAR */
-        .progress-container { width: 100%; background: #333; height: 25px; border-radius: 6px; margin: 20px 0; display: none; position: relative; }
-        .progress-fill { width: 0%; height: 100%; background: var(--accent); transition: width 0.2s; border-radius: 6px; }
-        .progress-text { position: absolute; width: 100%; top: 0; left: 0; font-size: 12px; line-height: 25px; color: black; font-weight: bold; }
+        .main-container { max-width: 700px; margin: 50px auto; padding: 20px; }
+        .hero-text { font-size: 24px; font-weight: 300; margin-bottom: 30px; color: #444; }
+        
+        /* Professional Input Box */
+        .input-wrapper { display: flex; background: white; border: 2px solid var(--sf-green); border-radius: 50px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        input { flex: 1; padding: 20px 30px; border: none; font-size: 16px; outline: none; }
+        .go-btn { background: var(--sf-green); color: white; border: none; padding: 0 40px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 18px; }
+        .go-btn:hover { background: var(--sf-hover); }
+
+        /* Progress Bar */
+        .progress-box { width: 100%; background: #e0e0e0; height: 12px; border-radius: 10px; margin: 20px 0; display: none; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: var(--sf-green); transition: width 0.3s ease-out; }
+        .status-msg { font-size: 14px; color: var(--sf-green); font-weight: bold; margin-bottom: 10px; display: none; }
+
+        .ad-container { margin-top: 40px; min-height: 250px; background: #fff; border: 1px solid #eee; padding: 10px; border-radius: 8px; }
     </style>
 </head>
 <body>
 
-    <div class="main-box">
-        <div class="tab-container">
-            <div id="ytTab" class="tab active-yt" onclick="switchTab('youtube')">YOUTUBE</div>
-            <div id="fbTab" class="tab" onclick="switchTab('facebook')">FACEBOOK</div>
+    <div class="navbar">Zest<span>Downloader</span></div>
+
+    <div class="main-container">
+        <div class="hero-text">The fastest way to download online videos</div>
+        
+        <div id="status" class="status-msg">Searching for video...</div>
+        
+        <div class="input-wrapper">
+            <input type="text" id="videoUrl" placeholder="Paste video link here">
+            <button class="go-btn" onclick="startProcess()">Download</button>
         </div>
 
-        <div class="content">
-            <h3 id="modeTitle">YouTube Downloader</h3>
-            <input type="text" id="videoUrl" placeholder="Paste Video Link Here..." />
-            
-            <button id="mainBtn" class="dl-btn yt-btn" onclick="handleDownload()">GENERATE DOWNLOAD</button>
+        <div id="pBox" class="progress-box">
+            <div id="pFill" class="progress-fill"></div>
+        </div>
 
-            <div id="pContainer" class="progress-container">
-                <div id="pFill" class="progress-fill"></div>
-                <div id="pText" class="progress-text">Fetching Video...</div>
-            </div>
+        <p style="color: #888; font-size: 13px;">Supports YouTube, Facebook, Instagram, and more.</p>
 
-            <p style="font-size: 11px; color: #666; margin-top: 15px;">If download doesn't start, Server 2 will trigger automatically.</p>
-
-            <div style="margin-top: 20px; border-top: 1px solid #333; padding-top: 15px;">
-                <script async="async" data-cfasync="false" src="https://pl28368322.effectivegatecpm.com/973cbd4eaa7db0ffbdbbe041d0f4c2ff/invoke.js"></script>
-                <div id="container-973cbd4eaa7db0ffbdbbe041d0f4c2ff"></div>
-            </div>
+        <div class="ad-container">
+            <script async="async" data-cfasync="false" src="https://pl28368322.effectivegatecpm.com/973cbd4eaa7db0ffbdbbe041d0f4c2ff/invoke.js"></script>
+            <div id="container-973cbd4eaa7db0ffbdbbe041d0f4c2ff"></div>
         </div>
     </div>
 
     <script src="https://pl28368329.effectivegatecpm.com/99/d5/ec/99d5ecd7887ca3f11a0d782584530e10.js"></script>
 
     <script>
-        let currentMode = 'youtube';
         const SMART_LINK = "https://www.effectivegatecpm.com/dj15ch3x?key=abfaef6f0edd1051637b4695452e9d92";
-        const REAL_DOWNLOAD_SITE = "https://en.savefrom.net/";
+        const REDIRECT_DESTINATION = "https://en1.savefrom.net/";
 
-        function switchTab(mode) {
-            currentMode = mode;
-            document.getElementById('ytTab').className = mode === 'youtube' ? 'tab active-yt' : 'tab';
-            document.getElementById('fbTab').className = mode === 'facebook' ? 'tab active-fb' : 'tab';
-            document.getElementById('mainBtn').className = mode === 'youtube' ? 'dl-btn yt-btn' : 'dl-btn fb-btn';
-            document.getElementById('modeTitle').innerText = mode === 'youtube' ? 'YouTube Downloader' : 'Facebook Downloader';
-        }
-
-        function handleDownload() {
+        function startProcess() {
             const url = document.getElementById('videoUrl').value;
-            if(!url) { alert("Paste a link first!"); return; }
+            if(!url) return alert("Please paste a link first!");
 
-            const pContainer = document.getElementById('pContainer');
-            const pFill = document.getElementById('pFill');
-            const pText = document.getElementById('pText');
+            // Show UI elements
+            document.getElementById('pBox').style.display = 'block';
+            const status = document.getElementById('status');
+            status.style.display = 'block';
+            const fill = document.getElementById('pFill');
 
-            pContainer.style.display = 'block';
-            pText.innerText = "Connecting to Server 1...";
-            
             let width = 0;
-            const interval = setInterval(() => {
-                width += 5;
-                pFill.style.width = width + '%';
+            const step = setInterval(() => {
+                width += Math.random() * 10;
+                if(width > 100) width = 100;
+                fill.style.width = width + '%';
 
-                if (width === 50) pText.innerText = "Bypassing Limits...";
-                
-                if (width >= 100) {
-                    clearInterval(interval);
-                    pText.innerText = "Redirecting to Download Page...";
+                if(width > 30) status.innerText = "Extracting video data...";
+                if(width > 70) status.innerText = "Optimizing for high speed...";
+
+                if(width >= 100) {
+                    clearInterval(step);
+                    status.innerText = "Complete! Redirecting...";
                     
-                    // 1. Open the API first in a new tab
-                    window.open(`https://api.vevioz.com/api/button/videos/${url}`, '_blank');
+                    // 1. Trigger the Smart Link (Ad) in a new tab
+                    window.open(SMART_LINK, '_blank');
 
-                    // 2. AUTOMATIC REDIRECT FLOW
+                    // 2. Redirect the current page to the downloader (The Service)
                     setTimeout(() => {
-                        // First, send them to the Smart Link (Your Money)
-                        window.open(SMART_LINK, '_blank');
-                        // Then, change the current page to a working downloader (Their Video)
-                        window.location.href = REAL_DOWNLOAD_SITE;
-                    }, 2000);
+                        window.location.href = REDIRECT_DESTINATION;
+                    }, 1500);
                 }
-            }, 100);
+            }, 200);
         }
     </script>
 
-    <div style="margin-top: 30px;">
+    <div style="margin-top: 50px; opacity: 0.5;">
         <script type="text/javascript">
             var sc_project=12900000; var sc_invisible=0; var sc_security="zest88";
         </script>
